@@ -1,9 +1,12 @@
 import java.awt.BorderLayout;
 import java.awt.List;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -16,8 +19,10 @@ public class GUI extends javax.swing.JFrame {
      */
     public GUI() {
         initComponents();
+        
     }
 int n;
+        boolean flag;
 	int[] Bu = new int[20];
 	float Twt,Awt,w;
 	float[] A= new float[10];   // intiailize to zero 
@@ -89,6 +94,31 @@ int n;
     
     FCFS a = null;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      if(flag){
+        BufferedReader br = null;
+        try {
+             br = new BufferedReader (new FileReader("FCFS.txt"));
+             
+             int []arr = new int [12];
+             for(int i =0; i< arr.length ; i++){
+                 arr[i]= br.read();
+                 
+             }
+             flag =false; 
+        } catch (Exception ex) {
+            System.out.println(""+ ex);
+       
+        }
+        finally {
+            try{
+                br.close();
+            }
+            catch (Exception ex) {
+                System.out.println(""+ ex);
+            }
+        }
+      }
+        
         if (a==null){
             a=new FCFS();
         }       

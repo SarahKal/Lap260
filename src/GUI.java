@@ -99,9 +99,12 @@ int n;
         try {
              br = new BufferedReader (new FileReader("FCFS.txt"));
              
-             int []arr = new int [12];
+             Process []arr = new Process [4];
              for(int i =0; i< arr.length ; i++){
-                 arr[i]= br.read();
+                 int processId = br.read();
+                 int arrivalTime = br.read();
+                 int burstTime = br.read();
+                 arr[i]= new Process(processId,arrivalTime,burstTime);
                  
              }
              flag =false; 

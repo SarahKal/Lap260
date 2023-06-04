@@ -100,7 +100,7 @@ int n;
       if(flag){
         BufferedReader br = null;
         try {
-             br = new BufferedReader (new FileReader("FCFS.txt"));
+             br = new BufferedReader (new FileReader("process.txt"));
              
              Process []arr = new Process [4];
              for(int i =0; i< arr.length ; i++){

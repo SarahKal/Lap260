@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -21,8 +22,10 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
         
     }
+   
 int n;
         boolean flag;
+        DefaultListModel<String> listModel ;
 	int[] Bu = new int[20];
 	float Twt,Awt,w;
 	float[] A= new float[10];   // intiailize to zero 
@@ -90,7 +93,7 @@ int n;
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+   
     
     FCFS a = null;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -105,7 +108,7 @@ int n;
                  int arrivalTime = br.read();
                  int burstTime = br.read();
                  arr[i]= new Process(processId,arrivalTime,burstTime);
-                 
+                 listModel.
              }
              flag =false; 
         } catch (Exception ex) {

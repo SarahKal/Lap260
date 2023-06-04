@@ -108,7 +108,7 @@ int n;
                  int arrivalTime = br.read();
                  int burstTime = br.read();
                  arr[i]= new Process(processId,arrivalTime,burstTime);
-                 listModel.
+                
              }
              flag =false; 
         } catch (Exception ex) {

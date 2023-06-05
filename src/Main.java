@@ -10,8 +10,8 @@ public class Main
 	float Twt,Awt,w;
 	  // intiailize to zero 
 	float[] Wt= new float[4];
-        
-	
+        Process [] arr = new Process [4];
+	float[] Turn= new float[4];
  
    //First come First served Algorithm
    public   void Fcfs(Process[] arr)
@@ -31,14 +31,21 @@ public class Main
 	{
        	Wt[i]=arr[i-1].burstTime+Wt[i-1];
  	}
-  	//Calculating Average Weighting Time
-  	for(i=0;i<4;i++)
-        	Twt=Twt+Wt[i];
-  	Awt=Twt/4;
-  	System.out.println("Total Weighting Time=" + Twt);
-  	System.out.println("Average Weighting Time=" + Awt +" ");
         
-        printFCFS(arr,Wt,Twt);
+        for(i=0;i<4;i++)
+	{
+       	Turn[i]=arr[i].burstTime+Wt[i];
+ 	}
+  	//Calculating Average Weighting Time
+  	for(i=0;i<4;i++){
+        	Twt=Twt+Wt[i];
+                Awt = Awt+Turn[i];
+        }
+  	 printFCFS(arr,Wt,Twt,Turn);
+  	System.out.println("Total Weighting Time=" + Twt);
+  	         System.out.println("Total Turnaround Time=" + Awt);
+        
+       
 	}
    
    
@@ -50,6 +57,7 @@ public class Main
         Process temp;
       	int [] B= new int [10];
  	Twt=(float) 0.0;
+        Awt=(float) 0.0;
  	for(i=0;i<4;i++)
 	{
      	
@@ -73,38 +81,46 @@ public class Main
 	{
       	Wt[i]=arr[i-1].burstTime+Wt[i-1];
 	}
-	//calculating Average Weighting Time
 	for(i=0;i<4;i++)
-    	Twt=Twt+Wt[i];
-	Awt=Twt/4;
+	{
+       	Turn[i]=arr[i].burstTime+Wt[i];
+ 	}
+  	//Calculating Average Weighting Time
+  	for(i=0;i<4;i++){
+        	Twt=Twt+Wt[i];
+                Awt = Awt+Turn[i];
+        }
+	 printSjf( arr ,Wt ,  Twt,Turn);
    System.out.println("Total Weighting Time=" + Twt);
-  	System.out.println("Average Weighting Time=" + Awt +" ");
+  	 System.out.println("Total Turnaround Time=" + Awt);
         
-        printSjf( arr ,Wt ,  Twt);
+       
 	}
 
 
         
-      public void  printFCFS(Process[] arr , float[] Wt , float Twt){
+      public void  printFCFS(Process[] arr , float[] Wt , float Twt,float[] Turn ){
           for (int i = 0; i < 4; i++) {
               System.out.print("process"+i+"    ");
-              System.out.println("witing time : "+ Wt[i]);
+              System.out.print("witing time : "+ Wt[i]+"    ");
+              System.out.println("turnaround time : "+ Turn[i]);
           }
       }
       
-       public void  printSjf(Process[] arr , float[] Wt , float Twt){
+       public void  printSjf(Process[] arr , float[] Wt , float Twt ,float[] Turn){
           for (int i = 0; i < 4; i++) {
               System.out.print("process"+i+"    ");
-              System.out.println("witing time : "+ Wt[i]);
+              System.out.print("witing time : "+ Wt[i]);
+              System.out.println("turnaround time : "+ Turn[i]);
           }
       }
 	public static void main(String[] args) throws FileNotFoundException {
- 
+  Process [] arr = new Process [4];
     	int ch,cho;
         
         File input = new File("process.txt");
         Scanner sc = new Scanner(input);
-        Process [] arr = new Process [4];
+        
         for(int i=0 ; i< arr.length ; i++){
             int id = sc.nextInt();
             int arriv = sc.nextInt();

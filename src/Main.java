@@ -9,7 +9,7 @@ public class Main
 	
 	float Twt,Awt,w;
 	  // intiailize to zero 
-	float[] Wt= new float[10];
+	float[] Wt= new float[4];
         
 	
  
@@ -37,7 +37,12 @@ public class Main
   	Awt=Twt/4;
   	System.out.println("Total Weighting Time=" + Twt);
   	System.out.println("Average Weighting Time=" + Awt +" ");
+        
+        printFCFS(arr,Wt,Twt);
 	}
+   
+   
+   
 	//Shortest job First Algorithm
 	public  void Sjf(Process[] arr)
 	{
@@ -74,9 +79,25 @@ public class Main
 	Awt=Twt/4;
    System.out.println("Total Weighting Time=" + Twt);
   	System.out.println("Average Weighting Time=" + Awt +" ");
+        
+        printSjf( arr ,Wt ,  Twt);
 	}
 
 
+        
+      public void  printFCFS(Process[] arr , float[] Wt , float Twt){
+          for (int i = 0; i < 4; i++) {
+              System.out.print("process"+i+"    ");
+              System.out.println("witing time : "+ Wt[i]);
+          }
+      }
+      
+       public void  printSjf(Process[] arr , float[] Wt , float Twt){
+          for (int i = 0; i < 4; i++) {
+              System.out.print("process"+i+"    ");
+              System.out.println("witing time : "+ Wt[i]);
+          }
+      }
 	public static void main(String[] args) throws FileNotFoundException {
  
     	int ch,cho;

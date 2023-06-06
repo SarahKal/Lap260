@@ -1,42 +1,50 @@
+
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
+
 public class GUI extends javax.swing.JFrame {
+
+    private JLabel label;
+    private JButton fcfsButton, sjfButton;
+    private JTextArea textArea;
 
     /**
      * Creates new form GUI
      */
+
     public GUI() {
-        initComponents();
-        
+     initComponents();
     }
-   
-int n;
-        boolean flag;
-        DefaultListModel<String> listModel ;
-	int[] Bu = new int[20];
-	float Twt,Awt,w;
-	float[] A= new float[10];   // intiailize to zero 
-	float[] Wt= new float[10];
-    @SuppressWarnings("unchecked")
+
+@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Simulation of process scheduling algorithms");
@@ -61,6 +69,10 @@ int n;
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabel1.setText("Please Select one of the two scheduling algorithms ");
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,142 +81,48 @@ int n;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(84, 84, 84)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(78, 78, 78)
-                                .addComponent(jButton1))))
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(jButton2)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                        .addGap(194, 194, 194)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2))))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(79, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
+                .addGap(36, 36, 36)
                 .addComponent(jButton1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addGap(111, 111, 111))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
    
     
-    FCFS a = null;
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      if(flag){
-        BufferedReader br = null;
-        try {
-             br = new BufferedReader (new FileReader("process.txt"));
-             
-             Process []arr = new Process [4];
-             for(int i =0; i< arr.length ; i++){
-                 int processId = br.read();
-                 int arrivalTime = br.read();
-                 int burstTime = br.read();
-                 arr[i]= new Process(processId,arrivalTime,burstTime);
-                
-             }
-             flag =false; 
-        } catch (Exception ex) {
-            System.out.println(""+ ex);
-       
-        }
-        finally {
-            try{
-                br.close();
-            }
-            catch (Exception ex) {
-                System.out.println(""+ ex);
-            }
-        }
-      }
-        
-        if (a==null){
-            a=new FCFS();
-        }       
-        a.setVisible(true);
-       loadFile();
-       /*
-        int currentTime = 0;
-        for (Process process : processes) {
-            int responseTime = currentTime - process.getArrivalTime();
-            int waitingTime = currentTime - process.getArrivalTime();
-            int turnaroundTime = waitingTime + process.getBurstTime();
-            int terminationTime = currentTime + process.getBurstTime();
-            currentTime = terminationTime;
-            tblModel.addRow(new Object[] { process.getProcessId(), process.getArrivalTime(), process.getBurstTime(), 
-                terminationTime, responseTime, waitingTime, turnaroundTime });
-        }
-        */
-       
+       FCFS a = new FCFS(this);
+        a.setVisible(true);     
     }//GEN-LAST:event_jButton1ActionPerformed
-    SJF b=null;
+
+    
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (b==null){
-            b=new SJF();
-        }       
+       SJF b = new SJF(this);
         b.setVisible(true);
-       loadFile();
         
-        /*
-        int i,j,temp;
-      	int [] B= new int [10];
- 	Twt=(float) 0.0;
- 	for(i=1;i<=n;i++)
-	{
-     	B[i]=Bu[i];
-     	System.out.println("Burst time for process p"+ i +"= ");
-     	System.out.println(B[i]);
-	}
-	for(i=n;i>=1;i--)
-   {
-    	for(j=1;j<=n;j++)
-   	{
-       	if(B[j-1] > B[j])
-      	{
-            	temp=B[j-1];
-            	B[j-1]=B[j];
-            	B[j]=temp;
-      	}
-   	}
-	}
- 	Wt[1]=0;
- 	for(i=2;i<=n;i++)
-	{
-      	Wt[i]=B[i-1]+Wt[i-1];
-	}
-	//calculating Average Weighting Time
-	for(i=1;i<=n;i++)
-    	Twt=Twt+Wt[i];
-	Awt=Twt/n;
-   System.out.println("Total Weighting Time=" + Twt);
-  	System.out.println("Average Weighting Time=" + Awt +" ");
-        */
     }//GEN-LAST:event_jButton2ActionPerformed
-
-        private void loadFile() {
-        String fileName = "process.txt";
-        ArrayList<Process> processes = new ArrayList<>();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] tokens = line.split(",");
-                int processId = Integer.parseInt(tokens[0]);
-                int arrivalTime = Integer.parseInt(tokens[1]);
-                int burstTime = Integer.parseInt(tokens[2]);
-                processes.add(new Process(processId, arrivalTime, burstTime));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        }
     
     
     public static void main(String args[]) {
@@ -218,16 +136,28 @@ int n;
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUI.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(GUI.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(GUI.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(GUI.class  
+
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -238,10 +168,14 @@ int n;
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

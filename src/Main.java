@@ -1,13 +1,15 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 import java.util.*;
+import java.io.*;
 
+public class Main {
 
-public class Main
- {
+    /*
 	
-	
-	float Twt,Awt,w;
+	float Waitingtime,Awt,w;
 	  // intiailize to zero 
 	float[] Wt= new float[4];
         Process [] arr = new Process [4];
@@ -97,23 +99,6 @@ public class Main
        
 	}
 
-
-        
-      public void  printFCFS(Process[] arr , float[] Wt , float Twt,float[] Turn ){
-          for (int i = 0; i < 4; i++) {
-              System.out.print("process"+i+"    ");
-              System.out.print("witing time : "+ Wt[i]+"    ");
-              System.out.println("turnaround time : "+ Turn[i]);
-          }
-      }
-      
-       public void  printSjf(Process[] arr , float[] Wt , float Twt ,float[] Turn){
-          for (int i = 0; i < 4; i++) {
-              System.out.print("process"+i+"    ");
-              System.out.print("witing time : "+ Wt[i]);
-              System.out.println("turnaround time : "+ Turn[i]);
-          }
-      }
 	public static void main(String[] args) throws FileNotFoundException {
   Process [] arr = new Process [4];
     	int ch,cho;
@@ -122,11 +107,11 @@ public class Main
         Scanner sc = new Scanner(input);
         
         for(int i=0 ; i< arr.length ; i++){
-            int id = sc.nextInt();
-            int arriv = sc.nextInt();
+            int pid = sc.nextInt();
+            int arrival = sc.nextInt();
             int brust = sc.nextInt();
             
-            arr[i]= new Process (id , arriv , brust);
+            arr[i]= new Process (pid , arrival , brust);
             
         }
   	Main c = new  Main();
@@ -134,5 +119,111 @@ public class Main
           c.Sjf(arr);
  
  }
-   
+     */
+    public static ArrayList<Process> processList;
+
+    public static void main(String[] args) throws FileNotFoundException {
+        processList = readProcessesFromFile("processe.txt");
+        printProcessList(processList);
+
+        GUI gui = new GUI();
+        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        gui.pack();
+        gui.setVisible(true);
+    }
+
+    private static ArrayList<Process> readProcessesFromFile(String filename) {
+        ArrayList<Process> list = new ArrayList<>();
+        try {
+            Scanner scanner = new Scanner(new File(filename));
+            while (scanner.hasNext()) {
+                String id = scanner.next();
+                int arrivalTime = scanner.nextInt();
+                int burstTime = scanner.nextInt();
+                list.add(new Process(id, arrivalTime, burstTime));
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    private static void printProcessList(ArrayList<Process> list) {
+        System.out.println("Processes:");
+        for (Process p : list) {
+            System.out.println(p.toString());
+        }
+        System.out.println();
+    }
+
+    public static void FCFS() {
+        ArrayList<Process> list = new ArrayList<>(processList);
+        list.sort((p1, p2) -> Integer.compare(p1.getArrivalTime(), p2.getArrivalTime()));
+
+        int currentTime = 0;
+        int totalWaitingTime = 0;
+        int totalTurnaroundTime = 0;
+
+        //textArea.append("Schedule Result:\n");
+
+        for (Process p : list) {
+            int waitingTime = currentTime - p.getArrivalTime();
+            if (waitingTime < 0) {
+                waitingTime = 0;
+            }
+            totalWaitingTime += waitingTime;
+
+            int turnaroundTime = waitingTime + p.getBurstTime();
+            totalTurnaroundTime += turnaroundTime;
+
+            currentTime += p.getBurstTime();
+
+            String resultfcfs = "";
+            for(int i=0; i<processList.size();i++){
+                resultfcfs+="Process " + p.getPid();
+                resultfcfs+=" finishes at time " + currentTime;
+                resultfcfs+=". Response time = " + waitingTime;
+                resultfcfs+=", Waiting time = " + waitingTime;
+                resultfcfs+=", Turnaround time = " + turnaroundTime;
+                resultfcfs+="\n";
+        }
+
+    }
+    }
+
+    public static void SJF() {
+        ArrayList<Process> list = new ArrayList<>(processList);
+        list.sort((p1, p2) -> Integer.compare(p1.getBurstTime(), p2.getBurstTime()));
+
+        int currentTime = 0;
+        int totalWaitingTime = 0;
+        int totalTurnaroundTime = 0;
+
+        for (Process p : list) {
+            int waitingTime = currentTime - p.getArrivalTime();
+            if (waitingTime < 0) {
+                waitingTime = 0;
+            }
+            totalWaitingTime += waitingTime;
+
+            int turnaroundTime = waitingTime + p.getBurstTime();
+            totalTurnaroundTime += turnaroundTime;
+
+            currentTime += p.getBurstTime();
+
+            String resultsjf = "";
+            for(int i=0; i<processList.size();i++){
+                resultsjf+="Process " + p.getPid();
+                resultsjf+=" finishes at time " + currentTime;
+                resultsjf+=". Response time = " + waitingTime;
+                resultsjf+=", Waiting time = " + waitingTime;
+                resultsjf+=", Turnaround time = " + turnaroundTime;
+                resultsjf+="\n";
+            }
+    
+        }
+
+    }
+
 }

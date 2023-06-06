@@ -1,21 +1,35 @@
 
 public class Process {
-    int processId;
-    int arrivalTime;
-    int burstTime;
+     String pid;
+     int arrivalTime;
+     int burstTime;
+     int responseTime;
+     int waitTime;
+     int turnaroundTime;
 
-    public Process(int processId, int arrivalTime, int burstTime) {
-        this.processId = processId;
+    public int getTerminationTime() {
+        return terminationTime;
+    }
+
+    public void setTerminationTime(int terminationTime) {
+        this.terminationTime = terminationTime;
+    }
+     int terminationTime;
+
+    public Process(String pid, int arrivalTime, int burstTime) {
+        this.pid = pid;
         this.arrivalTime = arrivalTime;
         this.burstTime = burstTime;
     }
+    
+    
 
-    public int getProcessId() {
-        return processId;
+    public String getPid() {
+        return pid;
     }
 
-    public void setProcessId(int processId) {
-        this.processId = processId;
+    public void setPid(String pid) {
+        this.pid = pid;
     }
 
     public int getArrivalTime() {
@@ -33,6 +47,32 @@ public class Process {
     public void setBurstTime(int burstTime) {
         this.burstTime = burstTime;
     }
+
+    public int getResponseTime() {
+        return responseTime;
+    }
+
+    public void setResponseTime(int responseTime) {
+        this.responseTime = responseTime;
+    }
+
+    public int getWaitTime() {
+        return waitTime;
+    }
+
+    public void setWaitTime(int waitTime) {
+        this.waitTime = waitTime;
+    }
+
+    public int getTurnaroundTime() {
+        return turnaroundTime;
+    }
+
+    public void setTurnaroundTime(int turnaroundTime) {
+        this.turnaroundTime = turnaroundTime;
+    }
+
+
     
     
     

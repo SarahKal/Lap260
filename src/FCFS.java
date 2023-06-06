@@ -1,7 +1,7 @@
 import javax.swing.JOptionPane;
 public class FCFS extends javax.swing.JFrame {
 GUI mainwindow;
-Main r;
+Main r = new Main();
     /**
      * Creates new form FCFS
      */
@@ -25,6 +25,7 @@ Main r;
         public FCFS(Main r){
         this();
         this.r=r;
+        jTextArea1.setText("amera elsayd");
 
        //jTextArea1.app
     }

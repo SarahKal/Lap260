@@ -128,7 +128,7 @@ public class Main {
             Scanner scanner = new Scanner(new File("process.txt"));
             while (scanner.hasNext()) {
                int arrivalTime = scanner.nextInt();
-                int id = scanner.nextInt();
+                String id = scanner.next();
                 
                 int burstTime = scanner.nextInt();
                 list.add(new Process(id, arrivalTime, burstTime));

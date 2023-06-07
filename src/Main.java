@@ -7,15 +7,8 @@ import java.io.*;
 
 public class Main {
         
- static String []dd = {"Process 0   finishes at time 5.   Response time = 0,   Waiting time = 0,   Turnaround time = 5\n" +
-"Process 1   finishes at time 8.   Response time = 5,   Waiting time = 5,   Turnaround time = 8\n" +
-"Process 2   finishes at time 9.   Response time = 8,   Waiting time = 8,   Turnaround time = 9\n" +
-"Process 3   finishes at time 11.   Response time = 9,   Waiting time = 9,   Turnaround time = 11"};
- 
- static String []cc ={"Process 0`   finishes at time 1.    Response time = 0,   Waiting time = 0,   Turnaround time = 1\n" +
-"Process 1`   finishes at time 3.    Response time = 1,   Waiting time = 1,   Turnaround time = 3\n" +
-"Process 2`   finishes at time 6.    Response time = 3,   Waiting time = 3,   Turnaround time = 6\n" +
-"Process 3`   finishes at time 11.    Response time = 6,   Waiting time = 6,   Turnaround time = 11"};
+ static String []dd = {""};
+ static String []cc ={""};
     
     public static ArrayList<Process> processList;
 
@@ -37,6 +30,7 @@ public class Main {
         printProcessList(list);
        FCFS(list) ;
        SJF(list);
+        
 
         GUI gui = new GUI();
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,7 +84,45 @@ public class Main {
            
 
     }
-        System.out.println(resultfcfs);
+        
+        
+        
+         String chart ="";
+       chart += "                  gantt chart of FCFS\n";
+     
+       
+          currentTime = 0;
+        
+        String labels = "";
+        chart+= "+";
+        labels+="";
+       int kk =0;
+       labels+=kk;
+        for (int j=0 ; j< list.size() ;j++) {
+          kk+= list.get(j).burstTime;
+            chart+="------+";
+            labels+="        " + kk ;
+            
+        }
+        
+        chart+="\n";
+        labels+="\n";
+        chart+="|";
+        for (int j=0 ; j< list.size() ;j++) {
+            chart+="   "+list.get(j).burstTime+"    |";
+        }
+        chart+="\n+";
+         for (int j=0 ; j< list.size() ;j++) {
+            chart+="------+";
+            
+        }
+        chart+="\n";
+        labels+="\n";
+        chart+= labels;
+        
+        resultfcfs +="\n"+ chart;
+         
+         System.out.println(resultfcfs);
         dd[0] = resultfcfs;
         String result =  printfcfs(dd);
     }
@@ -133,9 +165,49 @@ public class Main {
              i++;
     
         }
-   System.out.println(resultsjf);
+       
+   
+        
+         String chart ="";
+        chart += "                  gantt chart of SJF\n";
+     
+        
+          currentTime = 0;
+        
+        String labels = "";
+        chart+= "+";
+        labels+="";
+       int kk =0;
+       labels+=kk;
+        for (int j=0 ; j< list.size() ;j++) {
+          kk+= list.get(j).burstTime;
+            chart+="------+";
+            labels+="        " + kk ;
+            
+        }
+        
+        chart+="\n";
+        labels+="\n";
+        chart+="|";
+        for (int j=0 ; j< list.size() ;j++) {
+            chart+="   "+list.get(j).burstTime+"    |";
+        }
+        chart+="\n+";
+         for (int j=0 ; j< list.size() ;j++) {
+            chart+="------+";
+            
+        }
+        chart+="\n";
+        labels+="\n";
+        chart+= labels;
+        
+          
+       
+        resultsjf+= "\n"+chart;
+         System.out.println(resultsjf);
    cc[0]= resultsjf;
-        String result =  printsjf(cc);
+        String result =  printsjf(cc);  
+          
     }
 
      public static String printsjf(String [] cc) {
@@ -143,5 +215,5 @@ public class Main {
          
      }
     
-
+  
 }

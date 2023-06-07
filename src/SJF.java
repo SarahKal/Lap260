@@ -6,7 +6,7 @@ GUI mainwindow;
      */
     public SJF() {
         initComponents();
-         jTextArea1.setText(Main.printfcfs(Main.dd));
+         jTextArea1.setText(Main.printfcfs(Main.cc));
     }
     public SJF(GUI mainwindow){
         this();

@@ -16,7 +16,8 @@ Main r = new Main();
 
     public FCFS() {
         initComponents();
-        jTextPane1.setText("hi sara");
+    String resultfcfs = null;
+         jTextPane1.setText(Main.printfcfs(Main.dd));
     }
     public FCFS(GUI mainwindow){
         this();

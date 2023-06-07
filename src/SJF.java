@@ -1,4 +1,4 @@
-
+import javax.swing.JOptionPane;
 public class SJF extends javax.swing.JFrame {
 GUI mainwindow;
     /**
@@ -6,6 +6,7 @@ GUI mainwindow;
      */
     public SJF() {
         initComponents();
+         jTextArea1.setText(Main.printfcfs(Main.dd));
     }
     public SJF(GUI mainwindow){
         this();

@@ -6,120 +6,17 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-
-    /*
-	
-	float Waitingtime,Awt,w;
-	  // intiailize to zero 
-	float[] Wt= new float[4];
-        Process [] arr = new Process [4];
-	float[] Turn= new float[4];
+        
+ static String []dd = {"Process 0   finishes at time 5.   Response time = 0,   Waiting time = 0,   Turnaround time = 5\n" +
+"Process 1   finishes at time 8.   Response time = 5,   Waiting time = 5,   Turnaround time = 8\n" +
+"Process 2   finishes at time 9.   Response time = 8,   Waiting time = 8,   Turnaround time = 9\n" +
+"Process 3   finishes at time 11.   Response time = 9,   Waiting time = 9,   Turnaround time = 11"};
  
-   //First come First served Algorithm
-   public   void Fcfs(Process[] arr)
-	{
-        
-       	int i;
-     	int [] B= new int [10];
- 	Twt=(float) 0.0;
- 	for(i=0;i<4;i++)
-	{
-     	
-     	System.out.println("Burst time for process p"+ i +"= ");
-     	System.out.println(arr[i].burstTime);
- 	}
- 	Wt[0]=0;
- 	for(i=1;i<4;i++)
-	{
-       	Wt[i]=arr[i-1].burstTime+Wt[i-1];
- 	}
-        
-        for(i=0;i<4;i++)
-	{
-       	Turn[i]=arr[i].burstTime+Wt[i];
- 	}
-  	//Calculating Average Weighting Time
-  	for(i=0;i<4;i++){
-        	Twt=Twt+Wt[i];
-                Awt = Awt+Turn[i];
-        }
-  	 printFCFS(arr,Wt,Twt,Turn);
-  	System.out.println("Total Weighting Time=" + Twt);
-  	         System.out.println("Total Turnaround Time=" + Awt);
-        
-       
-	}
-   
-   
-   
-	//Shortest job First Algorithm
-	public  void Sjf(Process[] arr)
-	{
-      	int i,j;
-        Process temp;
-      	int [] B= new int [10];
- 	Twt=(float) 0.0;
-        Awt=(float) 0.0;
- 	for(i=0;i<4;i++)
-	{
-     	
-     	System.out.println("Burst time for process p"+ i +"= ");
-     	System.out.println(arr[i].burstTime);
-	}
-	for(i=4;i>0;i--)
-   {
-    	for(j=1;j<4;j++)
-   	{
-       	if(arr[j-1].burstTime > arr[j].burstTime)
-      	{
-            	temp=arr[j-1];
-            	arr[j-1]=arr[j];
-            	arr[j]=temp;
-      	}
-   	}
-	}
- 	Wt[0]=0;
- 	for(i=1;i<4;i++)
-	{
-      	Wt[i]=arr[i-1].burstTime+Wt[i-1];
-	}
-	for(i=0;i<4;i++)
-	{
-       	Turn[i]=arr[i].burstTime+Wt[i];
- 	}
-  	//Calculating Average Weighting Time
-  	for(i=0;i<4;i++){
-        	Twt=Twt+Wt[i];
-                Awt = Awt+Turn[i];
-        }
-	 printSjf( arr ,Wt ,  Twt,Turn);
-   System.out.println("Total Weighting Time=" + Twt);
-  	 System.out.println("Total Turnaround Time=" + Awt);
-        
-       
-	}
-
-	public static void main(String[] args) throws FileNotFoundException {
-  Process [] arr = new Process [4];
-    	int ch,cho;
-        
-        File input = new File("process.txt");
-        Scanner sc = new Scanner(input);
-        
-        for(int i=0 ; i< arr.length ; i++){
-            int pid = sc.nextInt();
-            int arrival = sc.nextInt();
-            int brust = sc.nextInt();
-            
-            arr[i]= new Process (pid , arrival , brust);
-            
-        }
-  	Main c = new  Main();
-          c.Fcfs(arr);
-          c.Sjf(arr);
- 
- }
-     */
+ static String []cc ={"Process 0`   finishes at time 1.    Response time = 0,   Waiting time = 0,   Turnaround time = 1\n" +
+"Process 1`   finishes at time 3.    Response time = 1,   Waiting time = 1,   Turnaround time = 3\n" +
+"Process 2`   finishes at time 6.    Response time = 3,   Waiting time = 3,   Turnaround time = 6\n" +
+"Process 3`   finishes at time 11.    Response time = 6,   Waiting time = 6,   Turnaround time = 11"};
+    
     public static ArrayList<Process> processList;
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -183,10 +80,10 @@ public class Main {
             
             
                 resultfcfs+="Process " + i;
-                resultfcfs+=" finishes at time " + currentTime;
-                resultfcfs+=". Response time = " + waitingTime;
-                resultfcfs+=", Waiting time = " + waitingTime;
-                resultfcfs+=", Turnaround time = " + turnaroundTime;
+                resultfcfs+="   finishes at time " + currentTime;
+                resultfcfs+=".   Response time = " + waitingTime;
+                resultfcfs+=",   Waiting time = " + waitingTime;
+                resultfcfs+=",   Turnaround time = " + turnaroundTime;
                 resultfcfs+="\n";
                 i++;
         
@@ -194,11 +91,14 @@ public class Main {
 
     }
         System.out.println(resultfcfs);
-        String result =  printfcfs(resultfcfs);
+        dd[0] = resultfcfs;
+        String result =  printfcfs(dd);
     }
+    
+     
 
-     public static String printfcfs(String resultfcfs) {
-         return resultfcfs;
+     public static String printfcfs(String []dd) {
+         return dd[0];
          
      }
     public static void SJF(ArrayList<Process> list) {
@@ -225,20 +125,21 @@ public class Main {
            
             
                 resultsjf+="Process " + i;
-                resultsjf+=" finishes at time " + currentTime;
-                resultsjf+=". Response time = " + waitingTime;
-                resultsjf+=", Waiting time = " + waitingTime;
-                resultsjf+=", Turnaround time = " + turnaroundTime;
+                resultsjf+="`   finishes at time " + currentTime;
+                resultsjf+=".    Response time = " + waitingTime;
+                resultsjf+=",   Waiting time = " + waitingTime;
+                resultsjf+=",   Turnaround time = " + turnaroundTime;
                 resultsjf+="\n";
              i++;
     
         }
    System.out.println(resultsjf);
-        String result =  printfcfs(resultsjf);
+   cc[0]= resultsjf;
+        String result =  printsjf(cc);
     }
 
-     public static String printsjf(String printsjf) {
-         return printsjf;
+     public static String printsjf(String [] cc) {
+         return cc[0];
          
      }
     

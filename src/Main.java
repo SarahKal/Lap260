@@ -96,25 +96,45 @@ public class Main {
         String labels = "";
         chart+= "+";
         labels+="";
+        String width ="";
        int kk =0;
        labels+=kk;
         for (int j=0 ; j< list.size() ;j++) {
-          kk+= list.get(j).burstTime;
-            chart+="------+";
-            labels+="        " + kk ;
+             kk+= list.get(j).burstTime;
+            for(int k=0 ; k< list.get(j).burstTime *4;k++){
+         
+            chart+="-";
+            labels+=" "  ;
             
         }
-        
+            chart+="+";
+             labels+= "    "+kk ;
+        }
+         
         chart+="\n";
         labels+="\n";
         chart+="|";
         for (int j=0 ; j< list.size() ;j++) {
-            chart+="   "+list.get(j).burstTime+"    |";
+            for(int k=0 ; k< list.get(j).burstTime *4;k++){
+            chart+=" ";
         }
+           
+             for(int k=0 ; k< list.get(j).burstTime /2;k++){
+            chart+=" ";
+        }
+              chart+=list.get(j).burstTime;
+                  for(int k=0 ; k< list.get(j).burstTime/2+1 ;k++){
+            chart+=" ";
+        }
+                  chart+="|";
+        }
+         
         chart+="\n+";
          for (int j=0 ; j< list.size() ;j++) {
-            chart+="------+";
-            
+              for(int k=0 ; k< list.get(j).burstTime*4 ;k++){
+            chart+="-";
+              }
+              chart+="+";
         }
         chart+="\n";
         labels+="\n";
@@ -179,23 +199,42 @@ public class Main {
         labels+="";
        int kk =0;
        labels+=kk;
-        for (int j=0 ; j< list.size() ;j++) {
-          kk+= list.get(j).burstTime;
-            chart+="------+";
-            labels+="        " + kk ;
+         for (int j=0 ; j< list.size() ;j++) {
+             kk+= list.get(j).burstTime;
+            for(int k=0 ; k< list.get(j).burstTime *4;k++){
+         
+            chart+="-";
+            labels+=" "  ;
             
         }
-        
+            chart+="+";
+            labels+= "   "+kk ;
+        }
+         
         chart+="\n";
         labels+="\n";
         chart+="|";
         for (int j=0 ; j< list.size() ;j++) {
-            chart+="   "+list.get(j).burstTime+"    |";
+            for(int k=0 ; k< list.get(j).burstTime *4;k++){
+            chart+=" ";
         }
+           
+             for(int k=0 ; k< list.get(j).burstTime /2;k++){
+            chart+=" ";
+        }
+              chart+=list.get(j).burstTime;
+                  for(int k=0 ; k< list.get(j).burstTime/2+1 ;k++){
+            chart+=" ";
+        }
+                  chart+="|";
+        }
+         
         chart+="\n+";
          for (int j=0 ; j< list.size() ;j++) {
-            chart+="------+";
-            
+              for(int k=0 ; k< list.get(j).burstTime*4 ;k++){
+            chart+="-";
+              }
+              chart+="+";
         }
         chart+="\n";
         labels+="\n";
